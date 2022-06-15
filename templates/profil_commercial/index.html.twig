@@ -1,0 +1,64 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Profil Commercial index
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Profil Commercial index</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>CrmUsed</th>
+					<th>CrmName</th>
+					<th>TimeOfProspec</th>
+					<th>PrecisTimeOfProspec</th>
+					<th>TypeOfProspec</th>
+					<th>ProspecMoreClient</th>
+					<th>NumberClosPerMonth</th>
+					<th>PrecisClosPerMonth</th>
+					<th>BudOfProspPerMonth</th>
+					<th>PrcisBudProsMonth</th>
+					<th>AnalyseProspec</th>
+					<th>SatisfiedOfRoi</th>
+					<th>PriorityCommercial</th>
+					<th>PrcisPrioCommercial</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for profil_commercial in profil_commercials %}
+					<tr>
+						<td>{{ profil_commercial.id }}</td>
+						<td>{{ profil_commercial.crmUsed }}</td>
+						<td>{{ profil_commercial.crmName }}</td>
+						<td>{{ profil_commercial.timeOfProspec }}</td>
+						<td>{{ profil_commercial.precisTimeOfProspec }}</td>
+						<td>{{ profil_commercial.typeOfProspec ? profil_commercial.typeOfProspec|join(', ') : '' }}</td>
+						<td>{{ profil_commercial.prospecMoreClient }}</td>
+						<td>{{ profil_commercial.numberClosPerMonth }}</td>
+						<td>{{ profil_commercial.precisClosPerMonth }}</td>
+						<td>{{ profil_commercial.budOfProspPerMonth }}</td>
+						<td>{{ profil_commercial.prcisBudProsMonth }}</td>
+						<td>{{ profil_commercial.analyseProspec ? 'Yes' : 'No' }}</td>
+						<td>{{ profil_commercial.satisfiedOfRoi ? 'Yes' : 'No' }}</td>
+						<td>{{ profil_commercial.priorityCommercial ? profil_commercial.priorityCommercial|json_encode : '' }}</td>
+						<td>{{ profil_commercial.prcisPrioCommercial }}</td>
+						<td>
+							<a href="{{ path('profil_commercial_show', {'id': profil_commercial.id}) }}">montrer</a>
+							<a href="{{ path('profil_commercial_edit', {'id': profil_commercial.id}) }}">modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="16">pas de données</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('profil_commercial_new') }}">créer un nouveau</a>
+	</div>
+{% endblock %}

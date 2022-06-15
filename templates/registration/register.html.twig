@@ -1,0 +1,61 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Création d'un nouvel utilisateur</h1>
+
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.firstname, {
+            label: 'Prénom : '
+        }) }}
+		{{ form_row(registrationForm.lastname, {
+            label: 'Nom : '
+        }) }}
+		{{ form_row(registrationForm.email, {
+            label: 'Email : '
+        }) }}
+		{{ form_row(registrationForm.agreeTerms) }}
+		<button type="submit" class="btn btn-primary">Sauvegarder</button>
+
+		{{ form_row(registrationForm.companyname, {
+            label: 'Nom de la société : '
+        }) }}
+
+		{{ form_row(registrationForm.domainname, {
+            label: 'Nom de domaine de la société : '
+        }) }}
+
+		{{ form_row(registrationForm.businesssector, {
+            label: "Secteur d'activité : "
+        }) }}
+
+		{{ form_row(registrationForm.phonenumber, {
+            label: 'Numéro de téléphone : '
+        }) }}
+
+		{{ form_row(registrationForm.adress, {
+            label: 'Adresse : '
+        }) }}
+
+		{{ form_row(registrationForm.postcode, {
+            label: 'Code postal : '
+        }) }}
+
+		{{ form_row(registrationForm.city, {
+            label: 'Ville : '
+        }) }}
+
+		{{ form_row(registrationForm.advertisingbudget, {
+            label: 'Montant de votre budget publicitaire : '
+        }) }}
+
+		{{ form_row(registrationForm.marketarea, {
+            label: 'Zone de chalandise : '
+        }) }}
+		{{ form_end(registrationForm) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<div class="col-1 col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+	<div class="d-flex flex-column align-items-center pt-2 text-white min-vh-100">
+		<ul class="nav nav-pills flex-column mb-sm-auto mb-0 text-center align-items-center" id="menu">
+			{% for item in menu_list %}
+				<li class="nav-item">
+					<a href="{{ item.link }}" class="nav-link align-middle py-5 link-orange">
+						<i class="fs-1 bi-{{ item.bi }} justify-self-middle"></i>
+						<span class="fs-5 ms-1 d-none d-md-grid">{{ item.text }}</span>
+					</a>
+				</li>
+				{% else %}
+			{% endfor %}
+		</ul>
+	</div>
+</div>

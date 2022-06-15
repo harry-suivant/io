@@ -1,0 +1,13 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Nouvel Audit 2/3
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Nouvel audit 2/3</h1>
+
+		{{ include('profil_commercial/_form.html.twig') }}
+
+	</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Action
+{% endblock %}
+
+{% block body %}
+	<section class="container col-auto col-md-9 col-xl-10">
+		<h1>Action</h1>
+
+		<a class="btn my-3" href="{{ path('action_index') }}">Retour à la liste</a>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Nom</th>
+						<td>{{ action.name }}</td>
+					</tr>
+					<tr>
+						<th>Descriptif</th>
+						<td>{{ action.text }}</td>
+					</tr>
+					<tr>
+						<th>Ressources</th>
+						<td>
+							{% for ressource in action.ressource %}
+								<h5>{{ ressource.name }}</h5>
+								<br>
+								{{ ressource.description }}
+								<br>
+								<br>
+								{% if "<iframe" in ressource.link %}
+							{{ ressource.link|raw }}
+						{% else %}
+							<a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a>
+						{% endif %}
+								<br>
+								{% if ressource.type == "image" %}
+									<a class="link-dark" href="{{ path('ressource_show', {'id': ressource.id}) }}">
+										<img src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="150">
+									</a>
+								{% endif %}
+								{% if ressource.type == "pdf" %}
+									<iframe src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="150" height="100"></iframe>
+								{% endif %}
+
+								{% if ressource.type == "video"%}
+									<video controls width="150">
+										<source src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" type="video/mp4">
+									</video>
+								{% endif %}
+
+								<hr>
+								{% else %}
+
+							{% endfor %}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+			<a class="btn my-3" href="{{ path('action_edit', {'id': action.id}) }}">Modifier</a>
+
+			{{ include('action/_delete_form.html.twig') }}
+
+	</section>
+{% endblock %}

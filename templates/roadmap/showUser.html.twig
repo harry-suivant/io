@@ -1,0 +1,51 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Consultation d'une Roadmap
+{% endblock %}
+
+{% block body %}
+	<section class="container col-auto col-md-9 col-xl-10">
+
+		<div class="d-flex flex-wrap">
+			{% for roadmapcheck in app.user.roadmapChecks %}
+				<div class="col-3 border-dark border border-2 my-3 mx-3">
+					<div>
+						<h2>{{ roadmapcheck.roadmap.name }}
+							{% if roadmapcheck.isComplete %}
+								<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+							{% else %}
+								<img src="{{ asset('build/images/work.png') }}" class='imgcheck'/>
+							{% endif %}
+						</h2>
+					</div>
+
+
+					{% for stepcheck in roadmapcheck.stepChecks %}
+						<div class="mx-3">
+							<h4><a href={{ path('step_userShow', {'id': stepcheck.id}) }}>{{ stepcheck.step.name }}</a>
+								{% if stepcheck.isComplete %}
+									<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+								{% else %}
+									<img src="{{ asset('build/images/work.png') }}" class='imgcheck'/>
+								{% endif %}
+							</h4>
+
+							{% for actioncheck in stepcheck.actionChecks %}
+								<div class="mx-3">
+									<p>
+										<a href={{ path('action_showUser', {'id': actioncheck.id}) }}>{{ actioncheck.action.name }}</a>
+										{% if actioncheck.isComplete %}
+											<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+										{% else %}
+											<img src="{{ asset('build/images/work.png') }}" class='imgcheck'/>
+										{% endif %}
+									</p>
+								</div>
+							{% endfor %}
+						</div>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}

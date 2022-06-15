@@ -1,0 +1,113 @@
+{% extends 'customer/base.html.twig' %}
+
+{% block title %}Hello ProfileController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="col-auto col-md-9 col-xl-10 container">
+		<div class="row">
+			<div class="col-6">
+				<h2 class="text-decoration-underline">Mes informations</h2>
+
+				<ul>
+					<li>Nom:
+						{{ app.user.lastname }}</li>
+					<li>Prénom:
+						{{ app.user.firstname }}</li>
+					<li>Email:
+						{{ app.user.email }}</li>
+					<li>Numéro de téléphone:
+						{{ app.user.phonenumber }}</li>
+					<li>Adresse:
+						{{ app.user.adress }}</li>
+					<li>Code Postal:
+						{{ app.user.postcode }}</li>
+					<li>Ville:
+						{{ app.user.city }}</li>
+					<li>Nom de Société:
+						{{ app.user.companyname }}</li>
+					<li>Nom du domaine:
+						{{ app.user.domainname }}</li>
+					<li>Secteur d'activité:
+						{{ app.user.businesssector }}</li>
+					<li>Zone de chalandise:
+						{{ app.user.marketarea }}</li>
+				</ul>
+				<a class="link-dark btn " href="{{ path("profile_update", {id: app.user.id}) }}">Modifier mon profil</a>
+			</div>
+			<div class="col-6">
+				{% if user.SocialMedias is not empty %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="2">Mes Liens</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Linkedlin:
+								</td>
+								<td>{{ user.SocialMedias.linkedIn }}</td>
+							</tr>
+							<tr>
+								<td>Facebook:
+								</td>
+								<td>{{ user.SocialMedias.facebook }}</td>
+							</tr>
+							<tr>
+								<td>Tiktok:
+								</td>
+								<td>{{ user.SocialMedias.tiktok }}</td>
+							</tr>
+							<tr>
+								<td>Twitter:
+								</td>
+								<td>{{ user.SocialMedias.twitter }}</td>
+							</tr>
+							<tr>
+								<td>Instagram:
+								</td>
+								<td>{{ user.SocialMedias.instagram }}</td>
+							</tr>
+							<tr>
+								<td>Snapchat:
+								</td>
+								<td>{{ user.SocialMedias.snapchat }}</td>
+							</tr>
+							<tr>
+								<td>Youtube:
+								</td>
+								<td>{{ user.SocialMedias.youtube }}</td>
+							</tr>
+							<tr>
+								<td>Pinterest:
+								</td>
+								<td>{{ user.SocialMedias.pinterest }}</td>
+							</tr>
+							<tr>
+								<td>Site Internet:
+								</td>
+								<td>{{ user.SocialMedias.site }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<a class="btn" href="{{ path("profile_SocialMediaUpdate") }}">Modifier mes liens</a>
+				{% endif %}
+				{% if user.SocialMedias is empty %}
+					<a class="btn mt-3" href="{{ path("profile_newSocialMedias") }}">Ajouter mes liens</a>
+				{% endif %}
+			</div>
+		</div>
+		<div class="mt-5 row">
+			<h2 class="text-decoration-underline">Sécurité</h2>
+
+			<p>Identifiant:
+				{{ app.user.email }}</p>
+			<p>
+				<a class="btn my-3" href="{{ path("profile_password") }}">Modifier mon mot de passe</a>
+			</p>
+		</div>
+	</div>
+
+{% endblock %}

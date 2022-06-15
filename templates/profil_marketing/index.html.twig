@@ -1,0 +1,66 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Profil Marketing index
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Profil Marketing index</h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>MessageForTarget</th>
+					<th>SocialNetworkUsed</th>
+					<th>PrcSocialNetworkUse</th>
+					<th>SocialNetworkEngage</th>
+					<th>PrcSocialNetworkEn</th>
+					<th>ActionSeaMep</th>
+					<th>PrcActionSeaMep</th>
+					<th>ActionSeoMep</th>
+					<th>PrcActionSeoMep</th>
+					<th>SocialNetworkBestRoi</th>
+					<th>PrcSNBestRoi</th>
+					<th>VectorMarketing</th>
+					<th>PrcVectorMarketing</th>
+					<th>PriorityMarketing</th>
+					<th>PrcPriorityMarketing</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for profil_marketing in profil_marketings %}
+					<tr>
+						<td>{{ profil_marketing.id }}</td>
+						<td>{{ profil_marketing.messageForTarget }}</td>
+						<td>{{ profil_marketing.socialNetworkUsed }}</td>
+						<td>{{ profil_marketing.prcSocialNetworkUse }}</td>
+						<td>{{ profil_marketing.socialNetworkEngage }}</td>
+						<td>{{ profil_marketing.prcSocialNetworkEn }}</td>
+						<td>{{ profil_marketing.actionSeaMep }}</td>
+						<td>{{ profil_marketing.prcActionSeaMep }}</td>
+						<td>{{ profil_marketing.actionSeoMep }}</td>
+						<td>{{ profil_marketing.prcActionSeoMep }}</td>
+						<td>{{ profil_marketing.socialNetworkBestRoi }}</td>
+						<td>{{ profil_marketing.prcSNBestRoi }}</td>
+						<td>{{ profil_marketing.vectorMarketing }}</td>
+						<td>{{ profil_marketing.prcVectorMarketing }}</td>
+						<td>{{ profil_marketing.priorityMarketing }}</td>
+						<td>{{ profil_marketing.prcPriorityMarketing }}</td>
+						<td>
+							<a href="{{ path('profil_marketing_show', {'id': profil_marketing.id}) }}">montrer</a>
+							<a href="{{ path('profil_marketing_edit', {'id': profil_marketing.id}) }}">modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="17">pas de données</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('profil_marketing_new') }}">créer un nouveau</a>
+	</div>
+{% endblock %}

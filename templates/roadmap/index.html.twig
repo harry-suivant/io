@@ -1,0 +1,37 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Liste des Roadmap
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Liste des Roadmap</h1>
+		<div class="d-flex">
+			<a class="btn my-3 mx-2" href="{{ path('roadmap_new') }}">Nouvelle Roadmap</a>
+			<a class="btn my-3 mx-2" href="{{ path('admin_gestionRoadmap') }}">Retour au Menu</a>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for roadmap in roadmaps %}
+					<tr>
+						<td>{{ roadmap.name }}</td>
+						<td>
+							<a class="mx-3" href="{{ path('roadmap_show', {'id': roadmap.id}) }}">Voir</a>
+							<a class="mx-3" href="{{ path('roadmap_edit', {'id': roadmap.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}ProfilMarketing
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Audit réalisé le {{ profil_marketing.profil.createAt ? profil_marketing.profil.createAt|date('d-m-Y à H:i:s') : '' }}</h1>
+
+		{% if is_granted("ROLE_ADMIN") %}
+			<a class="btn my-3" href="{{ path('profil_index') }}">retour à la liste</a>
+		{% else %}
+			<a class="btn my-3" href="{{ path('profil_index_customer') }}">retour à la liste</a>
+		{% endif %}
+
+		{{ include('profil_marketing/_form_show.html.twig') }}
+
+	</div>
+{% endblock %}

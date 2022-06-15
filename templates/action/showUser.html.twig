@@ -1,0 +1,55 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h2 class="text-center mb-5">{{ action.name }}</h2>
+		<div class="link mt-5">
+			<a class="btn my-3" href="{{ path('step_userShow', {'id': actionCheck.stepCheck.id}) }}">Retourner à l'étape</a>
+		</div>
+		<div class="container">
+			<article>{{ action.text }}</article>
+		</div>
+		<div class="ressources container-fluid mt-5">
+			<div class="row justify-content-around">
+				{% for item in action.ressource %}
+					<div class="col-6 medias">
+						{% if item.type == "image" %}
+							<img id='showIMG' src="{{ vich_uploader_asset(item) }}" alt="{{ item.name }}" width="400">
+						{% endif %}
+
+						{% if item.type == "pdf" %}
+							<iframe src="{{ vich_uploader_asset(item) }}" alt="{{ item.name }}" width="700" height="600"></iframe>
+						{% endif %}
+
+						{% if item.type == "video"%}
+							<video controls width="700">
+								<source src="{{ vich_uploader_asset(item) }}" alt="{{ item.name }}" type="video/mp4">
+							</video>
+						{% endif %}
+						{% if item.link is not empty %}
+							<div class="bg-dark border border-4 border-orange p-2">
+								<h5 class="text-orange text-decoration-underline">{{ item.name }}</h5>
+								<p class="text-light">{{ item.description }}</p>
+								{% if "<iframe" in item.link %}
+									<div class="text-center">{{ item.link|raw }}
+									</div>
+								{% else %}
+									<p class="text-orange">Suivez ce lien :</p>
+									<a class="link-light" href="{{ item.link }}">{{ item.link }}</a>
+								{% endif %}
+
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="isCompleteForm">
+			{{ form_start(form) }}
+			{{ form_row(form.isComplete) }}
+			<div class="row mx-2">
+				<button class="btn">Valider</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

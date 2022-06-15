@@ -1,0 +1,18 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouvelle Action
+{% endblock %}
+
+{% block body %}
+	<section class="container col-auto col-md-9 col-xl-10">
+		<div>
+			<h1>Créer une nouvelle action</h1>
+
+			<a class="btn my-3" class="link-dark" href="{{ path('action_index') }}">Retour à la liste</a>
+
+			{{ include('action/_form.html.twig') }}
+		</div>
+
+
+	</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}La liste des étapes
+{% endblock %}
+
+{% block body %}
+	{% if is_granted("ROLE_ADMIN") %}
+		<section class="container col-auto col-md-9 col-xl-10">
+			<div>
+				<h1>La liste des étapes</h1>
+
+				<div class="d-flex">
+					<a class="btn my-3 mx-2" href="{{ path('step_new') }}">Nouvelle étape</a>
+					<a class="btn my-3 mx-2" href="{{ path('admin_gestionRoadmap') }}">Retour au Menu</a>
+				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Etapes</th>
+							<th>Taches</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for step in steps %}
+							<tr>
+								<td>{{ step.name }}</td>
+								<td>
+								{% for action in step.actions %}
+									{{ action.name }},
+								{% endfor %}
+								</td>
+								<td>
+									<a class="mx-3" href="{{ path('step_show', {'id': step.id}) }}">montrer</a>
+									<a class="mx-3" href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				{% else %}
+					<tbody>
+						<tr>
+							<td colspan="3">pas de données</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}

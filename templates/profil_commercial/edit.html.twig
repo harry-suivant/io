@@ -1,0 +1,16 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Modifier le profil Commercial
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Modifier le profil Commercial</h1>
+
+		{{ include('profil_commercial/_form.html.twig', {'button_label': 'mettre à jour'}) }}
+
+		<a href="{{ path('profil_commercial_index') }}">retour à la liste</a>
+
+		{{ include('profil_commercial/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

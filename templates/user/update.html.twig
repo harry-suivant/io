@@ -1,0 +1,58 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Modifier
+{% endblock %}
+{% block body %}
+	<div class="col-auto col-md-9 col-xl-10 container">
+		{{ form_start(updateForm) }}
+		{{ form_row(updateForm.firstname, {
+            label: 'Prénom : '
+        }) }}
+		{{ form_row(updateForm.lastname, {
+            label: 'Nom : '
+        }) }}
+		{{ form_row(updateForm.email, {
+            label: 'Email : '
+        }) }}
+
+		{{ form_row(updateForm.companyname, {
+            label: 'Nom de la société : '
+        }) }}
+
+		{{ form_row(updateForm.domainname, {
+            label: 'Nom de domaine de la société : '
+        }) }}
+
+		{{ form_row(updateForm.businesssector, {
+            label: "Secteur d'activité : "
+        }) }}
+
+		{{ form_row(updateForm.phonenumber, {
+            label: 'Numéro de téléphone : '
+        }) }}
+
+		{{ form_row(updateForm.adress, {
+            label: 'Adresse : '
+        }) }}
+
+		{{ form_row(updateForm.postcode, {
+            label: 'Code postal : '
+        }) }}
+
+		{{ form_row(updateForm.city, {
+            label: 'Ville : '
+        }) }}
+
+		{{ form_row(updateForm.advertisingbudget, {
+            label: 'Montant de votre budget publicitaire : '
+        }) }}
+
+		{{ form_row(updateForm.marketarea, {
+            label: 'Zone de chalandise : '
+        }) }}
+
+        <button class="btn my-3" type="submit">Sauvegarder</button>
+
+		{{ form_end(updateForm) }}
+	</div>
+{% endblock %}

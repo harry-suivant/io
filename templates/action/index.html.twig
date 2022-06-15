@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Action index
+{% endblock %}
+
+{% block body %}
+	<section class="container col-auto col-md-9 col-xl-10">
+		<h1>Action index</h1>
+		<div class="d-flex">
+			<a class="btn btn-light my-3 mx-3" href="{{ path('action_new') }}">Nouvelle Action</a>
+			<a class="btn btn-light my-3 mx-3" href="{{ path('admin_gestionRoadmap') }}">Retour au Menu</a>
+		</div>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Descriptif</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for action in actions %}
+					<tr>
+						<td>{{ action.name }}</td>
+						<td id="tableTxt">{{ action.text }}</td>
+						<td>
+							<a class="mx-3" href="{{ path('action_show', {'id': action.id}) }}">Voir</a>
+							<a class="mx-3" href="{{ path('action_edit', {'id': action.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</section>
+{% endblock %}

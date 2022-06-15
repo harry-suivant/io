@@ -1,0 +1,44 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Etape
+{% endblock %}
+
+{% block body %}
+	<section class="container col-auto col-md-9 col-xl-10">
+		<h1 class="text-center m-5">{{ step.name }}
+			{% if step_check %}
+				<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+			{% else %}
+				<img src="{{ asset('build/images/work.png') }}" class='imgcheck'/>
+			{% endif %}
+		</h1>
+		<div class="row">
+			<ul class="text-center mt-5">
+				{% for action_check in action_checks %}
+					<li>
+						<a href="{{ path('action_showUser', {'id': action_check.id}) }}">{{ action_check.action.name }}</a>
+						{% if action_check.isComplete %}
+							<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+						{% else %}
+							<img src="{{ asset('build/images/work.png') }}" class='imgcheck'/>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<div class="col-6 bg-dark border border-4 border-orange">
+				<h3 class="text-light p-5 text-center">
+				{% if step_check %}
+				Bravo !</br> Vous avez validé toutes les actions de l'étape {{ step.name }}
+				<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+				{% else %}
+				Courage !</br> Vous avez encore des actions à valider...
+				<img src="{{ asset('build/images/workWhite.png') }}" class="imgcheck"/>
+				{% endif %}
+				</h3>
+			</div>
+		</div>
+		<a class="btn" href="{{ path('roadmap_showUser') }}">Retour à Mes Actions</a>
+	</section>
+{% endblock %}

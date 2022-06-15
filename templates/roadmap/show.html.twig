@@ -1,0 +1,29 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Consultation d'une Roadmap
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Consultation d'une Roadmap</h1>
+
+		<a class="btn my-3" href="{{ path('roadmap_index') }}">Retour à la liste</a>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ roadmap.id }}</td>
+				</tr>
+				<tr>
+					<th>Name</th>
+					<td>{{ roadmap.name }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a class="btn my-3" href="{{ path('roadmap_edit', {'id': roadmap.id}) }}">Modifier</a>
+
+		{{ include('roadmap/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

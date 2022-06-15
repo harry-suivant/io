@@ -1,0 +1,52 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}
+	{{ parent() }}
+	admin home
+{% endblock %}
+
+{% block body %}
+	<div class="col-11 col-md-9 col-xl-10 px-sm-2 px-0 container d-flex flex-column justify-content-around">
+		<div class="row justify-content-around">
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Gestion des Roadmaps</h5>
+						<p class="card-text text-center">Consultation, création, modification des roadmap...</p>
+						<a href="{{ path('admin_gestionRoadmap') }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Gestion des Utilisateurs</h5>
+						<p class="card-text text-center">Consultation, création, attribution des roadmaps, modification des utilisateurs...</p>
+						<a href="{{ path('user_index') }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-around">
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Gestion des Audits</h5>
+						<p class="card-text text-center">Consultater les audits des utilisateurs.</p>
+						<a href="{{ path('profil_index') }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Gestion Glossaire</h5>
+						<p class="card-text text-center">Consultation, création, modification des Ressources...</p>
+						<a href="{{ path('ressource_index') }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

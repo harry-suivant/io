@@ -1,0 +1,144 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Visualisation d'un compte utilisateur
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Compte utilisateur
+			{{ user.firstname }}
+			{{ user.lastname }}</h1>
+		<a class="btn my-3" href="{{ path('user_index') }}">Retour à la liste</a>
+		<div class="row">
+			<div class="col-6">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>email :
+							</th>
+							<td>{{ user.email }}</td>
+						</tr>
+						<tr>
+							<th>Nom de la société :
+							</th>
+							<td>{{ user.companyname }}</td>
+						</tr>
+						<tr>
+							<th>Nom de domaine de la société :
+							</th>
+							<td>{{ user.domainname }}</td>
+						</tr>
+						<tr>
+							<th>Secteur d'activité :
+							</th>
+							<td>{{ user.businesssector }}</td>
+						</tr>
+						<tr>
+							<th>Numéro de téléphone :
+							</th>
+							<td>{{ user.phonenumber }}</td>
+						</tr>
+						<tr>
+							<th>Adresse :
+							</th>
+							<td>{{ user.adress }}</td>
+						</tr>
+						<tr>
+							<th>Code postal :
+							</th>
+							<td>{{ user.postcode }}</td>
+						</tr>
+						<tr>
+							<th>Ville :
+							</th>
+							<td>{{ user.city }}</td>
+						</tr>
+						<tr>
+							<th>Montant de votre budget publicitaire :
+							</th>
+							<td>{{ user.advertisingbudget }}</td>
+						</tr>
+						<tr>
+							<th>Zone de chalandise :
+							</th>
+							<td>{{ user.marketarea }}</td>
+						</tr>
+						<tr>
+							<th>Roadmaps :
+							</th>
+							<td>
+								{% for roadmap in user.roadmapChecks %}
+									<p>{{ roadmap.roadmap.name }}</p>
+									{% else %}
+
+								{% endfor %}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-6">
+				{% if user.SocialMedias is not empty %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="2">Liens utilisateurs
+									{{ user.firstname }}
+									{{ user.lastname }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Linkedlin:
+								</td>
+								<td><a href="{{ user.SocialMedias.linkedIn }}">{{ user.SocialMedias.linkedIn }}</a></td>
+							</tr>
+							<tr>
+								<td>Facebook:
+								</td>
+								<td><a href="{{ user.SocialMedias.facebook }}">{{ user.SocialMedias.facebook }}</a></td>
+							</tr>
+							<tr>
+								<td>Tiktok:
+								</td>
+								<td><a href="{{ user.SocialMedias.tiktok }}">{{ user.SocialMedias.tiktok }}</a></td>
+							</tr>
+							<tr>
+								<td>Twitter:
+								</td>
+								<td><a href="{{ user.SocialMedias.twitter }}">{{ user.SocialMedias.twitter }}</a></td>
+							</tr>
+							<tr>
+								<td>Instagram:
+								</td>
+								<td><a href="{{ user.SocialMedias.instagram }}">{{ user.SocialMedias.instagram }}</a></td>
+							</tr>
+							<tr>
+								<td>Snapchat:
+								</td>
+								<td><a href="{{ user.SocialMedias.snapchat }}">{{ user.SocialMedias.snapchat }}</a></td>
+							</tr>
+							<tr>
+								<td>Youtube:
+								</td>
+								<td><a href="{{ user.SocialMedias.youtube }}">{{ user.SocialMedias.youtube }}</a></td>
+							</tr>
+							<tr>
+								<td>Pinterest:
+								</td>
+								<td><a href="{{ user.SocialMedias.pinterest }}">{{ user.SocialMedias.pinterest }}</a></td>
+							</tr>
+							<tr>
+								<td>Site Internet:
+								</td>
+								<td><a href="{{ user.SocialMedias.site }}">{{ user.SocialMedias.site }}</a></td>
+							</tr>
+						</tbody>
+					</table>
+				{% endif %}
+			</div>
+		</div>
+		{% include "user/_newRoadmap.html.twig" %}
+
+	</div>
+{% endblock %}

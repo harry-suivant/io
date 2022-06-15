@@ -1,0 +1,18 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Nouvel Audit 1/3
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Nouvel audit 1/3</h1>
+		{% if is_granted("ROLE_ADMIN") %}
+			<a class="btn my-3" href="{{ path('profil_index') }}">Retour aux audits</a>
+		{% else %}
+			<a class="btn my-3" href="{{ path('profil_index_customer') }}">Retour aux audits</a>
+		{% endif %}
+
+		{{ include('profil/_form.html.twig') }}
+
+	</div>
+{% endblock %}

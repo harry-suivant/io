@@ -1,0 +1,12 @@
+{% extends 'customer/base.html.twig' %}
+
+{% block title %}Modifier mes liens
+{% endblock %}
+{% block body %}
+	<div class="col-auto col-md-9 col-xl-10 container">
+		{{ form_start(form) }}
+        {{ form_widget(form) }}
+		<button class="btn" type="submit">Sauvegarder</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Liste des audits
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Liste des audits réalisés</h1>
+
+		<a class="btn" href="{{ path('profil_new') }}">
+			{% if is_granted("ROLE_ADMIN") %}
+				Test Audit
+			{% else %}
+				Nouvel Audit
+			{% endif %}
+		</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date de réalisation</th>
+					<th>Nom de l'entreprise</th>
+					<th>Nom de la personne</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for profil in profils %}
+					<tr>
+						<td>{{ profil.createAt ? profil.createAt|date('d-m-Y à H:i:s') : '' }}</td>
+						<td>{{ profil.user.companyname }}</td>
+						<td>{{ profil.user.firstname }}
+							{{ profil.user.lastname }}</td>
+						<td>
+							<a class="link-dark" href="{{ path('profil_show', {'id': profil.id}) }}">montrer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="24">pas de données</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+{% endblock %}

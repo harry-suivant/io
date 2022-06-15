@@ -1,0 +1,50 @@
+{% extends 'customer/base.html.twig' %}
+
+{% block title %}Customer Dashboard
+{% endblock %}
+
+{% block body %}
+	<div class="col-11 col-md-9 col-xl-10 px-sm-2 px-0 container d-flex flex-column justify-content-around">
+		<div class="row justify-content-around">
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Mes Audits</h5>
+						<p class="card-text text-center">Créer mes audits et les consulter</p>
+						<a href="{{ path("profil_index_customer") }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+            <div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Mes Actions</h5>
+						<p class="card-text text-center">Accéder à mes Etapes, voir mes actions, valider mes actions...</p>
+						<a href="{{ path("roadmap_showUser") }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row justify-content-around">
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Glossaire</h5>
+						<p class="card-text text-center">Accéder aux différentes ressources</p>
+						<a href="{{ path("ressource_index") }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+            <div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
+				<div class="card">
+					<div class="card-body d-flex flex-column justify-content-around">
+						<h5 class="card-title text-center">Mon profil</h5>
+						<p class="card-text">Consulter, modifier mon profil, ajouter mes liens, modifier mon mot de passe</p>
+						<a href="{{ path("profile_index") }}" class="btn btn-white align-self-center">Afficher</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
